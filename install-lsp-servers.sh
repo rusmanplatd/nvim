@@ -124,6 +124,10 @@ npm install -g intelephense
 echo -e "${YELLOW}Installing Blade formatter...${NC}"
 npm install -g blade-formatter
 
+# SQL
+echo -e "${YELLOW}Installing SQL LSP...${NC}"
+npm install -g sql-language-server
+
 echo ""
 echo -e "${GREEN}=== Installing Python-based Tools ===${NC}"
 
@@ -153,6 +157,30 @@ rustup component add rust-analyzer rustfmt clippy
 # Taplo (TOML)
 echo -e "${YELLOW}Installing Taplo (TOML LSP)...${NC}"
 cargo install taplo-cli --locked
+
+echo ""
+echo -e "${GREEN}=== Installing C/C++ Tools ===${NC}"
+echo -e "${YELLOW}Installing clangd and clang-format...${NC}"
+echo -e "${YELLOW}NOTE: This script assumes you are using apt. If not, please install clangd and clang-format using your system's package manager.${NC}"
+sudo apt-get install -y clangd clang-format
+
+echo ""
+echo -e "${GREEN}=== Installing Haskell Tools ===${NC}"
+
+if ! command -v ghcup &> /dev/null; then
+    echo -e "${RED}✗ ghcup is not installed. Please install it from: https://www.haskell.org/ghcup/${NC}"
+else
+    echo -e "${GREEN}✓ ghcup is installed${NC}"
+    echo -e "${YELLOW}Installing Haskell LSP and formatter...${NC}"
+    ghcup install hls
+    ghcup install fourmolu
+fi
+
+echo ""
+echo -e "${GREEN}=== Installing Elixir Tools ===${NC}"
+echo -e "${YELLOW}Installing Elixir-LS...${NC}"
+echo -e "${YELLOW}NOTE: Elixir-LS is typically installed via Mason inside Neovim. This is the recommended approach.${NC}"
+echo -e "${YELLOW}You can run :MasonInstall elixir-ls${NC}"
 
 echo ""
 echo -e "${GREEN}=== Additional Tools ===${NC}"
